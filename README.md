@@ -46,6 +46,8 @@ source install/setup.bash
 ros2 run cfw11_ros2_control treadmill_node
 ```
 
+If you get "No response received after 3 retries, continue with next request" please check all the wires are plugged in correctly. 
+
 ## Starting the GUI
 
 Make sure to open a new terminal then run:
