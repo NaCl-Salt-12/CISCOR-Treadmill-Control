@@ -1,6 +1,8 @@
 from python_qt_binding.QtWidgets import QDialog, QMessageBox
 from python_qt_binding.QtCore import Qt, QTimer
-from python_qt_binding.QtGui import QKeySequence, QShortcut
+# Corrected Imports (assuming QKeySequence is still in QtGui)
+from python_qt_binding.QtGui import QKeySequence
+from python_qt_binding.QtWidgets import QShortcut # <--- Import QShortcut from QtWidgets
 from python_qt_binding import loadUi
 from std_msgs.msg import Float32, Bool
 from pathlib import Path
