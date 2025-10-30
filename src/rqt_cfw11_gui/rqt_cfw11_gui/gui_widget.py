@@ -211,18 +211,18 @@ class CFW11GUI(QDialog):
 
     def on_emergency_stop(self):
         """Handle emergency stop - immediately disable motor."""
-        reply = QMessageBox.question(
-            self,
-            'Emergency Stop',
-            'Are you sure you want to perform an emergency stop?',
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.Yes
-        )
+        # reply = QMessageBox.question(
+        #     self,
+        #     'Emergency Stop',
+        #     'Are you sure you want to perform an emergency stop?',
+        #     QMessageBox.Yes | QMessageBox.No,
+        #     QMessageBox.Yes
+        # )
 
-        if reply == QMessageBox.Yes:
-            self.pushButton.setChecked(False)
-            self.horizontalSlider.setValue(0)
-            self.node.get_logger().warn("EMERGENCY STOP activated by user")
+        # if reply == QMessageBox.Yes:
+        self.pushButton.setChecked(False)
+        self.horizontalSlider.setValue(0)
+        self.node.get_logger().warn("EMERGENCY STOP activated by user")
 
     def update_actual_rpm(self, msg):
         """Update actual RPM display."""
