@@ -102,7 +102,7 @@ class CFW11GUI(QDialog):
     def check_connection_status(self):
         """Check if we're receiving updates from the backend."""
         time_since_update = (self.node.get_clock().now() - self.last_update_time).nanoseconds / 1e9
-        
+
         if time_since_update > 3.0:  # No update for 3 seconds
             self.connection_ok = False
             self.connectionStatus.setText("Disconnected")
@@ -124,7 +124,7 @@ class CFW11GUI(QDialog):
         self.target_rpm = float(value)
         self.targetMonitor.setText(f"{self.target_rpm:.1f} RPM")
         self.update_delta_display()
-        
+
         # Auto-apply if motor is enabled
         if self.is_enabled:
             self.send_rpm_command(float(value))
@@ -145,10 +145,10 @@ class CFW11GUI(QDialog):
     def apply_manual_speed(self):
         """Apply manually entered speed."""
         manual_text = self.lineEdit_manual_rpm.text().strip()
-        
+
         if not manual_text:
             return
-            
+
         try:
             rpm = float(manual_text)
             rpm = max(0, min(60, rpm))
@@ -165,7 +165,7 @@ class CFW11GUI(QDialog):
         self.target_rpm = float(rpm)
         self.targetMonitor.setText(f"{self.target_rpm:.1f} RPM")
         self.update_delta_display()
-        
+
         # Auto-apply if motor is enabled
         if self.is_enabled:
             self.send_rpm_command(float(rpm))
@@ -191,7 +191,7 @@ class CFW11GUI(QDialog):
         """Handle enable/disable toggle."""
         self.is_enabled = checked
         self.run_pub.publish(Bool(data=checked))
-        
+
         if checked:
             self.pushButton.setText("Motor Enabled")
             self.pushButton.setStyleSheet(
@@ -216,7 +216,7 @@ class CFW11GUI(QDialog):
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.Yes
         )
-        
+
         if reply == QMessageBox.Yes:
             self.pushButton.setChecked(False)
             self.horizontalSlider.setValue(0)
@@ -233,7 +233,7 @@ class CFW11GUI(QDialog):
         """Update the difference between target and actual RPM."""
         delta = abs(self.target_rpm - self.current_rpm)
         self.deltaMonitor.setText(f"{delta:.1f} RPM")
-        
+
         # Color-code the delta based on magnitude
         if delta < 2.0:
             color = "#28a745"  # Green - very close
@@ -241,7 +241,7 @@ class CFW11GUI(QDialog):
             color = "#ffc107"  # Yellow - moderate difference
         else:
             color = "#dc3545"  # Red - large difference
-            
+
         self.deltaMonitor.setStyleSheet(
             f"background-color: white; color: {color}; padding: 5px; "
             f"border: 2px solid {color}; border-radius: 3px; font-weight: bold;"
@@ -253,7 +253,7 @@ class CFW11GUI(QDialog):
         description = self.decode_status_word(status_code)
         self.statusMonitor.setText(f"{description}")
         self.last_update_time = self.node.get_clock().now()
-        
+
         # Color-code status
         status_colors = {
             0: "#90EE90",  # Ready - light green
@@ -265,10 +265,10 @@ class CFW11GUI(QDialog):
             6: "#fd7e14",  # DC-Braking - orange
             7: "#dc3545",  # STO - red
         }
-        
+
         bg_color = status_colors.get(status_code, "#e9ecef")
         text_color = "white" if status_code in [1, 2, 3, 6, 7] else "black"
-        
+
         self.statusMonitor.setStyleSheet(
             f"background-color: {bg_color}; color: {text_color}; "
             f"padding: 5px; border: 1px solid #ccc; border-radius: 3px;"

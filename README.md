@@ -68,7 +68,59 @@ You should now see the GUI with:
 
 
 ## How to Use
-The enable button starts/stops the motor and the set speed button sets the speed
+
+### User Interface Overview
+
+The improved UI provides intuitive control with the following features:
+
+#### Connection Status
+- **Connection Status Indicator**: Shows whether the GUI is connected to the backend node
+  - Green: Connected and receiving updates
+  - Red: Disconnected (no updates from backend)
+
+#### Status Monitor
+- **Drive Status**: Color-coded display showing the current state of the motor drive
+  - Green: Ready/Running
+  - Yellow: Undervoltage
+  - Red: Fault/STO
+  - Other colors for Configuration, Self-Tuning, DC-Braking
+- **Current Speed**: Live RPM reading from the motor (blue border)
+- **Target Speed**: Your desired RPM setting (gray border)
+- **Difference**: Shows how far the actual speed is from target
+  - Green border: Very close (< 2 RPM difference)
+  - Yellow border: Moderate difference (2-5 RPM)
+  - Red border: Large difference (> 5 RPM)
+
+#### Speed Control
+- **Quick Presets**: One-click buttons to set common speeds (10, 20, 30, 40, 50 RPM)
+- **Slider**: Drag to adjust speed smoothly (0-60 RPM with tick marks every 10 RPM)
+- **Fine Adjust**: Enter exact RPM values for precise control
+- **Increment/Decrement (+/-)**: Fine-tune speed by 1 RPM at a time
+- **Auto-Apply**: Speed changes are applied automatically when the motor is enabled (no separate "Set Speed" button needed)
+
+#### Motor Controls
+- **Enable Motor Button**: Start/stop the motor
+  - Green when enabled
+  - Red when disabled
+- **Emergency Stop**: Immediately stops the motor with a confirmation dialog
+  - Bright red color with warning symbol for high visibility
+
+#### Keyboard Shortcuts
+For faster control, use these keyboard shortcuts:
+- **Space**: Toggle motor enable/disable
+- **ESC**: Emergency stop (with confirmation)
+- **Ctrl++**: Increment speed by 1 RPM
+- **Ctrl+-**: Decrement speed by 1 RPM
+- **Enter**: Apply manually entered speed (when in Fine Adjust field)
+
+### Basic Operation
+1. Ensure the backend node is running (connection indicator should be green)
+2. Use the slider or preset buttons to set your desired speed
+3. Press the "Enable Motor" button (or press Space) to start the motor
+4. Speed changes are applied automatically while the motor is running
+5. For precise control, use the Fine Adjust input or +/- buttons
+6. Press "Motor Disabled" button (or Space) to stop normally
+7. In case of emergency, press the red "EMERGENCY STOP" button (or ESC key)
 
 
 ## CFW-11 Drive Parameters (for debugging)
