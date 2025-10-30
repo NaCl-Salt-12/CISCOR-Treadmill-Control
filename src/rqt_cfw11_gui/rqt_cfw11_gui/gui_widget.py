@@ -23,9 +23,7 @@ class CFW11GUI(QDialog):
         node.create_subscription(Float32, 'cfw11/actual_rpm', self.update_actual_rpm, 10)
         node.create_subscription(Float32, 'cfw11/status', self.update_status, 10)
 
-        # Slider setup
-        self.horizontalSlider.setMinimum(0)
-        self.horizontalSlider.setMaximum(60)
+        # Slider setup (already configured in UI file)
         self.horizontalSlider.valueChanged.connect(self.on_slider_change)
 
         # Button connections
@@ -35,27 +33,32 @@ class CFW11GUI(QDialog):
 
         # Manual input ↔ slider sync
         self.lineEdit_manual_rpm.textChanged.connect(self.on_manual_rpm_changed)
+        self.lineEdit_manual_rpm.returnPressed.connect(self.on_set_speed)
 
         # Init enable button state
         self.pushButton.setText("Disabled")
-        self.pushButton.setStyleSheet("background-color: red; color: white;")
+        self.pushButton.setStyleSheet("background-color: red; color: white; border-radius: 5px;")
 
         # Track last status
         self.last_status_code = None
 
-        self.rpmMonitor.setStyleSheet("background-color: white; color: black;")
-        self.statusMonitor.setStyleSheet("background-color: white; color: black;")
+        # Initialize slider value label
+        self.sliderValueLabel.setText(f"Target: {self.horizontalSlider.value()} RPM")
 
 
     def on_slider_change(self, value):
         self.lineEdit_manual_rpm.setText(str(value))
+        self.sliderValueLabel.setText(f"Target: {value} RPM")
 
     def on_manual_rpm_changed(self):
         text = self.lineEdit_manual_rpm.text().strip()
         try:
             rpm = int(float(text))
             rpm = max(0, min(60, rpm))
+            self.horizontalSlider.blockSignals(True)
             self.horizontalSlider.setValue(rpm)
+            self.horizontalSlider.blockSignals(False)
+            self.sliderValueLabel.setText(f"Target: {rpm} RPM")
         except ValueError:
             pass
 
@@ -66,24 +69,24 @@ class CFW11GUI(QDialog):
         if manual_text:
             try:
                 rpm = float(manual_text)
+                rpm = max(0, min(60, rpm))
             except ValueError:
-                self.textBrowser.append("Invalid manual RPM input.")
                 return
 
         if rpm is None:
             rpm = float(self.horizontalSlider.value())
 
         self.rpm_pub.publish(Float32(data=rpm))
-        self.lineEdit_manual_rpm.clear()
+        self.sliderValueLabel.setText(f"Target: {int(rpm)} RPM")
 
     def on_enable_toggle(self, checked):
         self.run_pub.publish(Bool(data=checked))
         if checked:
             self.pushButton.setText("Enabled")
-            self.pushButton.setStyleSheet("background-color: green; color: white;")
+            self.pushButton.setStyleSheet("background-color: green; color: white; border-radius: 5px;")
         else:
             self.pushButton.setText("Disabled")
-            self.pushButton.setStyleSheet("background-color: red; color: white;")
+            self.pushButton.setStyleSheet("background-color: red; color: white; border-radius: 5px;")
 
     def update_actual_rpm(self, msg):
         self.rpmMonitor.setText(f"{msg.data:.1f} RPM")
