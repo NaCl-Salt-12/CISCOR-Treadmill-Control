@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>400</height>
+    <width>600</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,33 +15,33 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
-    <number>10</number>
+    <number>12</number>
    </property>
    <property name="leftMargin">
-    <number>15</number>
+    <number>20</number>
    </property>
    <property name="topMargin">
-    <number>15</number>
+    <number>20</number>
    </property>
    <property name="rightMargin">
-    <number>15</number>
+    <number>20</number>
    </property>
    <property name="bottomMargin">
-    <number>15</number>
+    <number>20</number>
    </property>
    <item>
-    <widget class="QGroupBox" name="statusGroupBox">
+    <widget class="QGroupBox" name="connectionGroupBox">
      <property name="title">
-      <string>Status Monitor</string>
+      <string>Connection Status</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QGroupBox { font-weight: bold; }</string>
      </property>
-     <layout class="QHBoxLayout" name="statusLayout">
+     <layout class="QHBoxLayout" name="connectionLayout">
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="connectionLabel">
         <property name="text">
-         <string>Drive Status:</string>
+         <string>Connection:</string>
         </property>
         <property name="font">
          <font>
@@ -51,9 +51,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="statusMonitor">
+       <widget class="QLabel" name="connectionStatus">
         <property name="text">
-         <string>Ready</string>
+         <string>Unknown</string>
         </property>
         <property name="font">
          <font>
@@ -63,7 +63,7 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: white; color: black; padding: 5px; border: 1px solid #ccc; border-radius: 3px;</string>
+         <string notr="true">background-color: #gray; color: white; padding: 5px; border-radius: 3px;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -71,7 +71,7 @@
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer">
+       <spacer name="connectionSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -83,37 +83,179 @@
         </property>
        </spacer>
       </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="statusGroupBox">
+     <property name="title">
+      <string>Status Monitor</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox { font-weight: bold; }</string>
+     </property>
+     <layout class="QVBoxLayout" name="statusOuterLayout">
       <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Current Speed:</string>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="statusLayout">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Drive Status:</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="statusMonitor">
+          <property name="text">
+           <string>Ready</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #90EE90; color: black; padding: 5px; border: 1px solid #ccc; border-radius: 3px;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Current Speed:</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="rpmMonitor">
+          <property name="text">
+           <string>0.0 RPM</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: white; color: #0078d4; padding: 5px; border: 2px solid #0078d4; border-radius: 3px;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QLabel" name="rpmMonitor">
-        <property name="text">
-         <string>0.0 RPM</string>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: white; color: black; padding: 5px; border: 1px solid #ccc; border-radius: 3px;</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="targetLayout">
+        <item>
+         <widget class="QLabel" name="label_target">
+          <property name="text">
+           <string>Target Speed:</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="targetMonitor">
+          <property name="text">
+           <string>0.0 RPM</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: white; color: #6c757d; padding: 5px; border: 2px solid #6c757d; border-radius: 3px;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_target">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_delta">
+          <property name="text">
+           <string>Difference:</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="deltaMonitor">
+          <property name="text">
+           <string>0.0 RPM</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: white; color: black; padding: 5px; border: 1px solid #ccc; border-radius: 3px;</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -127,6 +269,135 @@
       <string notr="true">QGroupBox { font-weight: bold; }</string>
      </property>
      <layout class="QVBoxLayout" name="speedControlLayout">
+      <item>
+       <layout class="QHBoxLayout" name="presetButtonsLayout">
+        <item>
+         <widget class="QLabel" name="presetsLabel">
+          <property name="text">
+           <string>Quick Presets:</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="preset10Button">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>10</string>
+          </property>
+          <property name="toolTip">
+           <string>Set speed to 10 RPM</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #e9ecef; color: black; border: 1px solid #adb5bd; border-radius: 3px; }
+QPushButton:hover { background-color: #0078d4; color: white; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="preset20Button">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>20</string>
+          </property>
+          <property name="toolTip">
+           <string>Set speed to 20 RPM</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #e9ecef; color: black; border: 1px solid #adb5bd; border-radius: 3px; }
+QPushButton:hover { background-color: #0078d4; color: white; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="preset30Button">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>30</string>
+          </property>
+          <property name="toolTip">
+           <string>Set speed to 30 RPM</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #e9ecef; color: black; border: 1px solid #adb5bd; border-radius: 3px; }
+QPushButton:hover { background-color: #0078d4; color: white; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="preset40Button">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>40</string>
+          </property>
+          <property name="toolTip">
+           <string>Set speed to 40 RPM</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #e9ecef; color: black; border: 1px solid #adb5bd; border-radius: 3px; }
+QPushButton:hover { background-color: #0078d4; color: white; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="preset50Button">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>50</string>
+          </property>
+          <property name="toolTip">
+           <string>Set speed to 50 RPM</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #e9ecef; color: black; border: 1px solid #adb5bd; border-radius: 3px; }
+QPushButton:hover { background-color: #0078d4; color: white; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="presetSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
       <item>
        <layout class="QHBoxLayout" name="sliderLabelLayout">
         <item>
@@ -157,17 +428,20 @@
         <item>
          <widget class="QLabel" name="sliderValueLabel">
           <property name="text">
-           <string>Target: 0 RPM</string>
+           <string>Adjust: 0 RPM</string>
           </property>
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>11</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="toolTip">
+           <string>Speed changes apply automatically when motor is enabled</string>
           </property>
          </widget>
         </item>
@@ -218,6 +492,9 @@
         <property name="tickInterval">
          <number>10</number>
         </property>
+        <property name="toolTip">
+         <string>Drag to adjust speed (auto-applies when motor is enabled)</string>
+        </property>
        </widget>
       </item>
       <item>
@@ -225,7 +502,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Manual RPM Input:</string>
+           <string>Fine Adjust:</string>
           </property>
           <property name="font">
            <font>
@@ -237,10 +514,65 @@
         <item>
          <widget class="QLineEdit" name="lineEdit_manual_rpm">
           <property name="placeholderText">
-           <string>Enter RPM (0-60)</string>
+           <string>Enter precise RPM (0-60)</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="toolTip">
+           <string>Enter exact RPM value and press Enter to apply</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="incrementButton">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>+</string>
+          </property>
+          <property name="toolTip">
+           <string>Increase speed by 1 RPM (Ctrl++)</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #e9ecef; border: 1px solid #adb5bd; }
+QPushButton:hover { background-color: #0078d4; color: white; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="decrementButton">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+          <property name="toolTip">
+           <string>Decrease speed by 1 RPM (Ctrl+-)</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #e9ecef; border: 1px solid #adb5bd; }
+QPushButton:hover { background-color: #0078d4; color: white; }</string>
           </property>
          </widget>
         </item>
@@ -257,52 +589,81 @@
      <property name="styleSheet">
       <string notr="true">QGroupBox { font-weight: bold; }</string>
      </property>
-     <layout class="QHBoxLayout" name="controlLayout">
+     <layout class="QVBoxLayout" name="controlOuterLayout">
       <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>40</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>11</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Enable</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton { background-color: red; color: white; border-radius: 5px; }
-QPushButton:hover { background-color: darkred; }</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="controlLayout">
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Enable Motor</string>
+          </property>
+          <property name="toolTip">
+           <string>Start/Stop the motor (Space bar)</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #28a745; color: white; border-radius: 5px; }
+QPushButton:hover { background-color: #218838; }</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="emergencyStopButton">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>⚠ EMERGENCY STOP</string>
+          </property>
+          <property name="toolTip">
+           <string>Immediately stop the motor (ESC key)</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color: #dc3545; color: white; border: 3px solid #c82333; border-radius: 5px; }
+QPushButton:hover { background-color: #c82333; }</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>40</height>
-         </size>
+       <widget class="QLabel" name="helpLabel">
+        <property name="text">
+         <string>Keyboard: Space=Enable/Disable | ESC=Emergency Stop | Ctrl++/-=Adjust Speed | Enter=Apply Fine Adjust</string>
         </property>
         <property name="font">
          <font>
-          <pointsize>11</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <pointsize>8</pointsize>
+          <italic>true</italic>
          </font>
         </property>
-        <property name="text">
-         <string>Set Speed</string>
-        </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton { background-color: #0078d4; color: white; border-radius: 5px; }
-QPushButton:hover { background-color: #005a9e; }</string>
+         <string notr="true">color: #6c757d;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
