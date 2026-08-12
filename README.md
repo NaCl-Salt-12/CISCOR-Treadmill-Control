@@ -1,4 +1,4 @@
-# CFW11 ROS 2 Controller
+# (OLD) CFW11 ROS 2 Controller
 
 This is a a ROS 2 RQt plugin GUI for controlling and monitoring a WEG CFW-11 motor controller via Modbus RTU (RS-485).
 
